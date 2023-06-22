@@ -26,11 +26,29 @@ export default class ListPerson {
                   <td style="vertical-align: middle">${diaChi}</td>
                   <td style="vertical-align: middle">${email}</td>
                   <td style="vertical-align: middle">Student</td> 
-                  <td class="text-start" style="padding-left: 40px">
-                      Điểm toán: ${toan}<br/>
-                      Điểm Lý: ${ly}<br/>
-                      Điểm hóa: ${hoa}<br/>
-                      Điểm TB: ${dTB()}
+                  <td>
+                      <table style="margin-left: 10px">
+                        <tr>
+                          <td style="text-align: start">Điểm toán</td>
+                          <td>:</td>
+                          <td style="text-align: center; padding-left: 10px">${toan}</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: start">Điểm lý</td>
+                          <td>:</td>
+                          <td style="text-align: center; padding-left: 10px">${ly}</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: start">Điểm hóa</td>
+                          <td>:</td>
+                          <td style="text-align: center; padding-left: 10px">${hoa}</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: start">Điểm TB</td>
+                          <td>:</td>
+                          <td style="text-align: center; padding-left: 10px"> ${dTB()}</td>
+                        </tr>
+                      </table>
                   </td>
                   <td style="vertical-align: middle; text-align: center">
                     <button class="btn btn-danger" onclick="deleteUser('${ma}')">
@@ -67,10 +85,24 @@ export default class ListPerson {
                   <td style="vertical-align: middle">${diaChi}</td>
                   <td style="vertical-align: middle">${email}</td>
                   <td style="vertical-align: middle">Employee</td>
-                  <td class="text-start" style="padding-left: 40px">
-                      Số ngày làm việc: ${soNgayLamViec}<br/>
-                      Lương một ngày: ${luongMotNgay}<br/>
-                      Tổng lương: ${salary()}
+                  <td>
+                      <table style="margin-left: 10px">
+                        <tr style="text-align: start">
+                          <td>Số ngày làm việc</td>
+                          <td>:</td>
+                          <td style="padding-left: 10px">${soNgayLamViec}</td>
+                        </tr>
+                        <tr style="text-align: start">
+                          <td> Lương một ngày</td>
+                          <td>:</td>
+                          <td style="padding-left: 10px">${luongMotNgay}</td>
+                        </tr>
+                        <tr style="text-align: start">
+                          <td>Tổng lương</td>
+                          <td>:</td>
+                          <td style="padding-left: 10px">${salary()}</td>
+                        </tr>
+                      </table>
                   </td>
                   <td style="vertical-align: middle; text-align: center">
                       <button class="btn btn-danger" onclick="deleteUser('${ma}')">
@@ -99,10 +131,24 @@ export default class ListPerson {
                     <td style="vertical-align: middle">${diaChi}</td>
                     <td style="vertical-align: middle">${email}</td>
                     <td style="vertical-align: middle">Customer</td>
-                    <td class="text-start" style="padding-left: 40px">
-                        Tên công ty: ${tenCTY}<br/>
-                        Trị giá hóa đơn: ${triGiaHoaDon}<br/>
-                        Đánh giá: ${danhGia}<br/>
+                    <td>
+                      <table style="margin-left: 10px">
+                        <tr style="text-align: start">
+                          <td>Tên công ty</td>
+                          <td>:</td>
+                          <td style="padding-left: 10px">${tenCTY}</td>
+                        </tr>
+                        <tr style="text-align: start">
+                          <td>Trị giá hóa đơn</td>
+                          <td>:</td>
+                          <td style="padding-left: 10px">${triGiaHoaDon}</td>
+                        </tr>
+                        <tr style="text-align: start">
+                          <td>Đánh giá</td>
+                          <td>:</td>
+                          <td style="padding-left: 10px">${danhGia}</td>
+                        </tr>
+                      </table>
                     </td>
                     <td style="vertical-align: middle; text-align: center">
                         <button class="btn btn-danger" onclick="deleteUser('${ma}')">
@@ -136,6 +182,7 @@ export default class ListPerson {
     this.setLocalStorage(this.arrListPerson);
   }
   getInfoUser(maUser) {
+    document.getElementById("ma").readOnly = true;
     document.getElementById("btnEdit").style.display = "block";
     let user = this.arrListPerson.find((user) => user.ma == maUser);
     let arrEditUser = document.querySelectorAll(
@@ -146,6 +193,8 @@ export default class ListPerson {
 
     if (type) {
       document.getElementById("addUser").click();
+      document.getElementById("btnAddUser").style.display = "none";
+
       if (type == "student") {
         renderUserObj("student");
         let arrStudent = document.querySelectorAll(

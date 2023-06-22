@@ -30,24 +30,24 @@
       <div class="input-group mb-3">
         <input id="searchId" type="text" class="form-control" placeholder="Search" />
       </div>
-      <select class="form-select mb-3" style="width: 125px;">
-        <option>All</option>
-        <option value="1">Student</option>
-        <option value="2">Employee</option>
-        <option value="3">Customer</option>
+      <select class="form-select mb-3" style="width: 125px;" id="renderOnlyUser">
+        <option value="all">All</option>
+        <option value="student">Student</option>
+        <option value="employee">Employee</option>
+        <option value="customer">Customer</option>
       </select>
       <!--! Table show list user -->
       <!-- Table Student -->
       <table class="table table-bordered  table-sm">
         <thead>
-          <tr class="bg-primary text-center text-white">
+          <tr class="bg-primary text-center text-white" style="line-height: 50px;">
             <th>Mã</th>
             <th>Họ và tên</th>
             <th>Địa chỉ</th>
             <th>Email</th>
             <th>Người dùng</th>
             <th>Thông tinh riêng</th>
-            <th>Chỉnh sửa/Xóa</th>
+            <th><i class="fa-solid fa-gear"></i></th>
           </tr>
         </thead>
         <tbody id="renderListStudent"></tbody>
@@ -84,7 +84,7 @@
               </div>
               <!-- Đối tượng người dùng -->
               <select class="form-select mb-3" id="type">
-                <option>Chọn đối tượng người dùng</option>
+                <option value="user">Chọn đối tượng người dùng</option>
                 <option id="opSdt" value="student">Student</option>
                 <option id="opEle" value="employee">Employee</option>
                 <option id="opCor" value="customer">Customer</option>
@@ -93,7 +93,7 @@
               <div id="renderPerson"></div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <button type="button" id="idBtnClose" class="btn btn-secondary" data-bs-dismiss="modal">
                   Close
                 </button>
                 <button style="display: none;" type="button" class="btn btn-primary" id="btnEdit">

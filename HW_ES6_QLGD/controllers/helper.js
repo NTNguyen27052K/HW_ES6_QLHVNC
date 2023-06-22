@@ -75,6 +75,7 @@ export default renderUserObj;
 document.getElementById("type").onchange = function () {
   renderUserObj(document.getElementById("type").value);
 };
+
 //RemoveVietnameseTones
 export function removeVietnameseTones(str) {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");

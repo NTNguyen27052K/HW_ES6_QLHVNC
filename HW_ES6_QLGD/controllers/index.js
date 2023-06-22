@@ -4,14 +4,16 @@ import Customer from "../models/Customer.js";
 import ListPerson from "../models/ListPerson.js";
 
 let listPerson = new ListPerson();
-
 listPerson.getLocalStorage();
+
+document.getElementById("addUser").addEventListener("click", () => {
+  document.getElementById("btnAddUser").style.display = "block";
+});
 // ------------
 document.getElementById("btnAddUser").addEventListener("click", () => {
   let arrInput = document.querySelectorAll(
     ".modal-body input, .modal-body textarea, .modal-body .form-select"
   );
-
   let arrSel = document.querySelector(".modal-body select").value;
   let person;
   if (arrSel == "student") {
@@ -42,6 +44,10 @@ document.getElementById("btnAddUser").addEventListener("click", () => {
   console.log(listPerson.arrListPerson);
   listPerson.renderUser(listPerson.arrListPerson);
   listPerson.setLocalStorage(listPerson.arrListPerson);
+  for (const item of arrInput) {
+    item.value = "";
+  }
+  document.getElementById("idBtnClose").click();
 });
 window.deleteUser = (maInput) => {
   listPerson.deleteUser(maInput);
@@ -49,9 +55,6 @@ window.deleteUser = (maInput) => {
 window.getInfoUser = (maUser) => {
   listPerson.getInfoUser(maUser);
 };
-// document.getElementsByClassName("editBtn").click = () => {
-//   document.getElementById("btnEdit").style.display = "block";
-// };
 
 document.getElementById("btnEdit").onclick = () => {
   let arrInput = document.querySelectorAll(
@@ -85,12 +88,35 @@ document.getElementById("btnEdit").onclick = () => {
   }
   document.getElementById("btnEdit").style.display = "none";
 };
-// document.getElementById("searchId").oninput = (event) => {
-//   let value = event.target.value;
-//   console.log(value);
-// };
+
 document.getElementById("searchId").addEventListener("input", (event) => {
   let value = event.target.value;
 
   listPerson.findUser(value);
 });
+//Render Only User
+document.getElementById("renderOnlyUser").onchange = () => {
+  let checkInputRender = document.getElementById("renderOnlyUser").value;
+
+  if (checkInputRender == "all") {
+    listPerson.renderUser(listPerson.arrListPerson);
+  }
+  if (checkInputRender == "student") {
+    let renderAllStudent = listPerson.arrListPerson.filter(
+      (item) => item.type == "student"
+    );
+    listPerson.renderUser(renderAllStudent);
+  }
+  if (checkInputRender == "employee") {
+    let renderAllEmployee = listPerson.arrListPerson.filter(
+      (item) => item.type == "employee"
+    );
+    listPerson.renderUser(renderAllEmployee);
+  }
+  if (checkInputRender == "customer") {
+    let renderAllCustomer = listPerson.arrListPerson.filter(
+      (item) => item.type == "customer"
+    );
+    listPerson.renderUser(renderAllCustomer);
+  }
+};
