@@ -2,6 +2,7 @@ import Student from "./Student.js";
 import Employee from "./Employee.js";
 import Customer from "./Customer.js";
 import renderUserObj from "../controllers/helper.js";
+import {removeVietnameseTones} from "../controllers/helper.js";
 export default class ListPerson {
   constructor(student, employee, customer) {
     this.arrListPerson = [];
@@ -24,6 +25,7 @@ export default class ListPerson {
                   <td style="vertical-align: middle">${hoTen}</td>
                   <td style="vertical-align: middle">${diaChi}</td>
                   <td style="vertical-align: middle">${email}</td>
+                  <td style="vertical-align: middle">Student</td> 
                   <td class="text-start" style="padding-left: 40px">
                       Điểm toán: ${toan}<br/>
                       Điểm Lý: ${ly}<br/>
@@ -64,6 +66,7 @@ export default class ListPerson {
                   <td style="vertical-align: middle">${hoTen}</td>
                   <td style="vertical-align: middle">${diaChi}</td>
                   <td style="vertical-align: middle">${email}</td>
+                  <td style="vertical-align: middle">Employee</td>
                   <td class="text-start" style="padding-left: 40px">
                       Số ngày làm việc: ${soNgayLamViec}<br/>
                       Lương một ngày: ${luongMotNgay}<br/>
@@ -95,6 +98,7 @@ export default class ListPerson {
                     <td style="vertical-align: middle">${hoTen}</td>
                     <td style="vertical-align: middle">${diaChi}</td>
                     <td style="vertical-align: middle">${email}</td>
+                    <td style="vertical-align: middle">Customer</td>
                     <td class="text-start" style="padding-left: 40px">
                         Tên công ty: ${tenCTY}<br/>
                         Trị giá hóa đơn: ${triGiaHoaDon}<br/>
@@ -131,7 +135,6 @@ export default class ListPerson {
     this.renderUser(this.arrListPerson);
     this.setLocalStorage(this.arrListPerson);
   }
-
   getInfoUser(maUser) {
     document.getElementById("btnEdit").style.display = "block";
     let user = this.arrListPerson.find((user) => user.ma == maUser);
@@ -190,5 +193,19 @@ export default class ListPerson {
       this.renderUser(this.arrListPerson);
       this.setLocalStorage(this.arrListPerson);
     }
+  }
+  findUser(nameUser) {
+    let newNamaUser = removeVietnameseTones(nameUser);
+
+    let arrUser = this.arrListPerson.filter((item) => {
+      let nameUser = removeVietnameseTones(item.hoTen);
+
+      return nameUser
+        .toLowerCase()
+        .trim()
+        .includes(newNamaUser.toLowerCase().trim());
+    });
+    this.renderUser(arrUser);
+    // console.log(arrUser);
   }
 }

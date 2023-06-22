@@ -85,6 +85,12 @@ document.getElementById("btnEdit").onclick = () => {
   }
   document.getElementById("btnEdit").style.display = "none";
 };
-// let editAction = () => {
-//   document.getElementById("btnEdit").style.display = "none";
+// document.getElementById("searchId").oninput = (event) => {
+//   let value = event.target.value;
+//   console.log(value);
 // };
+document.getElementById("searchId").addEventListener("input", (event) => {
+  let value = event.target.value;
+
+  listPerson.findUser(value);
+});
