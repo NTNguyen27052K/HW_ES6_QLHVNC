@@ -34,7 +34,7 @@ export default class ListPerson {
                     <button class="btn btn-danger" onclick="deleteUser('${ma}')">
                       <i class="fa-solid fa-trash"></i>
                     </button>
-                    <button class="btn btn-warning editBtn" onclick="getInfoUser('${ma}')">
+                    <button class="btn btn-warning" onclick="getInfoUser('${ma}')">
                       <i class="fa-solid fa-pen"></i>
                     </button>
                   </td>
@@ -133,6 +133,7 @@ export default class ListPerson {
   }
 
   getInfoUser(maUser) {
+    document.getElementById("btnEdit").style.display = "block";
     let user = this.arrListPerson.find((user) => user.ma == maUser);
     let arrEditUser = document.querySelectorAll(
       ".modal-body input, .modal-body textarea"
@@ -169,7 +170,7 @@ export default class ListPerson {
       if (type == "customer") {
         renderUserObj("customer");
         let arrCustomer = document.querySelectorAll(
-          ".inputCustomer input, .modal-body .form-select"
+          ".inputCustomer input, .modal-body textarea"
         );
         let arr = [...arrCustomer, ...arrEditUser];
 

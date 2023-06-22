@@ -11,6 +11,7 @@ document.getElementById("btnAddUser").addEventListener("click", () => {
   let arrInput = document.querySelectorAll(
     ".modal-body input, .modal-body textarea, .modal-body .form-select"
   );
+
   let arrSel = document.querySelector(".modal-body select").value;
   let person;
   if (arrSel == "student") {
@@ -20,6 +21,7 @@ document.getElementById("btnAddUser").addEventListener("click", () => {
       person[id] = value;
     }
     listPerson.addUser(person);
+    console.log(person.type);
   }
   if (arrSel == "employee") {
     person = new Employee();
@@ -50,6 +52,7 @@ window.getInfoUser = (maUser) => {
 // document.getElementsByClassName("editBtn").click = () => {
 //   document.getElementById("btnEdit").style.display = "block";
 // };
+
 document.getElementById("btnEdit").onclick = () => {
   let arrInput = document.querySelectorAll(
     ".modal-body input, .modal-body textarea, .modal-body .form-select"
@@ -61,6 +64,7 @@ document.getElementById("btnEdit").onclick = () => {
       let {id, value} = item;
       person[id] = value;
     }
+    console.log(person.ma);
     listPerson.editInfoUser(person);
   }
   if ((arrSel = "employee")) {
@@ -79,4 +83,8 @@ document.getElementById("btnEdit").onclick = () => {
     }
     listPerson.editInfoUser(person);
   }
+  document.getElementById("btnEdit").style.display = "none";
 };
+// let editAction = () => {
+//   document.getElementById("btnEdit").style.display = "none";
+// };
