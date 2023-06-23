@@ -6,24 +6,36 @@ import ListPerson from "../models/ListPerson.js";
 let listPerson = new ListPerson();
 listPerson.getLocalStorage();
 
-document.getElementById("addUser").addEventListener("click", () => {
+document.getElementById("addUser").onclick = () => {
   document.getElementById("btnAddUser").style.display = "block";
-});
+  document.getElementById("btnEdit").style.display = "none";
+};
 // ------------
 document.getElementById("btnAddUser").addEventListener("click", () => {
   let arrInput = document.querySelectorAll(
     ".modal-body input, .modal-body textarea, .modal-body .form-select"
   );
+
+  for (const item of arrInput) {
+    let {id, value} = item;
+    console.log(item);
+    // if (value == "") {
+    //   return;
+    // }
+  }
   let arrSel = document.querySelector(".modal-body select").value;
   let person;
   if (arrSel == "student") {
     person = new Student();
     for (const item of arrInput) {
       let {id, value} = item;
+
       person[id] = value;
     }
     listPerson.addUser(person);
-    console.log(person.type);
+    // if (checkValidation()) {
+    //   listPerson.addUser(person);
+    // }
   }
   if (arrSel == "employee") {
     person = new Employee();
@@ -41,13 +53,13 @@ document.getElementById("btnAddUser").addEventListener("click", () => {
     }
     listPerson.addUser(person);
   }
-  console.log(listPerson.arrListPerson);
+  // console.log(listPerson.arrListPerson);
   listPerson.renderUser(listPerson.arrListPerson);
   listPerson.setLocalStorage(listPerson.arrListPerson);
   for (const item of arrInput) {
     item.value = "";
   }
-  document.getElementById("idBtnClose").click();
+  // document.getElementById("idBtnClose").click();
 });
 window.deleteUser = (maInput) => {
   listPerson.deleteUser(maInput);
@@ -86,7 +98,6 @@ document.getElementById("btnEdit").onclick = () => {
     }
     listPerson.editInfoUser(person);
   }
-  document.getElementById("btnEdit").style.display = "none";
 };
 
 document.getElementById("searchId").addEventListener("input", (event) => {
@@ -120,3 +131,12 @@ document.getElementById("renderOnlyUser").onchange = () => {
     listPerson.renderUser(renderAllCustomer);
   }
 };
+//!test
+// let addUser = () => {
+//   var valid = true;
+//   valid = checkInput("email", "errEmail", checkEmail("email"));
+
+//   if (!valid) {
+//     return;
+//   }
+// };

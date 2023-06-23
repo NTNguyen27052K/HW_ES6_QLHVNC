@@ -3,6 +3,7 @@ import Employee from "./Employee.js";
 import Customer from "./Customer.js";
 import renderUserObj from "../controllers/helper.js";
 import {removeVietnameseTones} from "../controllers/helper.js";
+
 export default class ListPerson {
   constructor(student, employee, customer) {
     this.arrListPerson = [];
@@ -183,7 +184,7 @@ export default class ListPerson {
   }
   getInfoUser(maUser) {
     document.getElementById("ma").readOnly = true;
-    document.getElementById("btnEdit").style.display = "block";
+
     let user = this.arrListPerson.find((user) => user.ma == maUser);
     let arrEditUser = document.querySelectorAll(
       ".modal-body input, .modal-body textarea"
@@ -194,7 +195,7 @@ export default class ListPerson {
     if (type) {
       document.getElementById("addUser").click();
       document.getElementById("btnAddUser").style.display = "none";
-
+      document.getElementById("btnEdit").style.display = "block";
       if (type == "student") {
         renderUserObj("student");
         let arrStudent = document.querySelectorAll(
