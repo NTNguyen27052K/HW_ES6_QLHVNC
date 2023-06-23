@@ -77,7 +77,17 @@ let renderUserObj = (value) => {
 export default renderUserObj;
 //! Render for each obj
 document.getElementById("type").onchange = function () {
-  renderUserObj(document.getElementById("type").value);
+  let valueSelect = document.getElementById("type").value;
+  // renderUserObj(document.getElementById("type").value);
+  if (valueSelect == "") {
+    document.getElementById("errObj").style.display = "block";
+    document.getElementById("type").classList.add("is-invalid");
+    return;
+  } else {
+    document.getElementById("errObj").style.display = "none";
+    document.getElementById("type").classList.remove("is-invalid");
+    renderUserObj(valueSelect);
+  }
 };
 //RemoveVietnameseTones
 export function removeVietnameseTones(str) {

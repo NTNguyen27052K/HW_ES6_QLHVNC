@@ -11,6 +11,18 @@ function checkInput(id, idErr, checkValidation) {
     return false;
   }
 }
+document.getElementById("type").onchange = function () {
+  let checkSelect = document.getElementById("type").value;
+  if (checkSelect == "") {
+    document.getElementById("errObj").style.display = "block";
+    document.getElementById("type").classList.add("is-invalid");
+    return false;
+  } else {
+    document.getElementById("errObj").style.display = "none";
+    document.getElementById("type").classList.remove("is-invalid");
+    return true;
+  }
+};
 function checkSelect(dataInput) {
   if (dataInput == "") {
     document.getElementById("errObj").style.display = "block";
