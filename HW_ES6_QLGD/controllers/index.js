@@ -15,27 +15,28 @@ document.getElementById("btnAddUser").addEventListener("click", () => {
   let arrInput = document.querySelectorAll(
     ".modal-body input, .modal-body textarea, .modal-body .form-select"
   );
-
-  for (const item of arrInput) {
-    let {id, value} = item;
-    console.log(item);
-    // if (value == "") {
-    //   return;
-    // }
-  }
   let arrSel = document.querySelector(".modal-body select").value;
+  var valid = true;
+  valid =
+    checkInput("email", "errEmail", checkEmail("email")) &
+    checkInput("ma", "errMa", true) &
+    checkInput("hoTen", "errName", true) &
+    checkInput("email", "errEmail", checkEmail("email")) &
+    checkInput("diaChi", "errAddress", true) &
+    checkSelect(arrSel);
+
   let person;
   if (arrSel == "student") {
     person = new Student();
     for (const item of arrInput) {
+      valid = check("toan") & check("ly") & check("hoa");
+      if (!valid) {
+        return;
+      }
       let {id, value} = item;
-
       person[id] = value;
     }
     listPerson.addUser(person);
-    // if (checkValidation()) {
-    //   listPerson.addUser(person);
-    // }
   }
   if (arrSel == "employee") {
     person = new Employee();

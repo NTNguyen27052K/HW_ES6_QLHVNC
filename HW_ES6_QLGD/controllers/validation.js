@@ -11,6 +11,17 @@ function checkInput(id, idErr, checkValidation) {
     return false;
   }
 }
+function checkSelect(dataInput) {
+  if (dataInput == "") {
+    document.getElementById("errObj").style.display = "block";
+    document.getElementById("type").classList.add("is-invalid");
+    return false;
+  } else {
+    document.getElementById("errObj").style.display = "none";
+    document.getElementById("type").classList.remove("is-invalid");
+    return true;
+  }
+}
 function check(id) {
   let dataInput = document.getElementById(id).value;
   if (dataInput) {
